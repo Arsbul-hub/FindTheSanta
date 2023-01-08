@@ -1,20 +1,38 @@
 from pprint import pprint
 
+from Entities.Entity import Player
 from config import AIR, WALL, GIFT, SPAWN, SANTA, CODES
 
 
 class Level:
     level_map = []
-    player_spawn = (0, 0)
+    entities = []
     santa_spawn = (0, 0)
     gifts = []
+    player_spawn = (0, 0)
 
     def __getitem__(self, index):
         return self.level_map[index]
 
 
+def get_player_cords(level):
+    for i in range(len(level)):
+        line = level[i]
+
+        if CODES["P"] in line:
+            return line.index(CODES["P"]), i
+
+
+def get_santa_cords(level):
+    for i in range(len(level)):
+        line = level[i]
+        if CODES["S"] in line:
+            return line.index(CODES["S"]), i
+
+
 class LevelLoader:
-    def __init__(self):
+    def __init__(self, screen):
+        self.screen = screen
         self.levels = []
 
         with open("levels.txt", "r") as f:
@@ -36,8 +54,9 @@ class LevelLoader:
 
             out_level = Level()
             out_level.level_map = out_level_map
-            out_level.santa_spawn = self.get_santa_cords(out_level_map)
-            out_level.player_spawn = self.get_player_cords(out_level_map)
+            out_level.player_spawn = get_player_cords(out_level_map)
+            # out_level.entities.append(Player(out_level, self.screen, self.get_player_cords(out_level_map)))
+            out_level.player_spawn = get_player_cords(out_level_map)
             self.levels.append(out_level)
 
     def __call__(self, *args, **kwargs):
@@ -45,18 +64,3 @@ class LevelLoader:
 
     def __iter__(self):
         return self.levels
-
-    @staticmethod
-    def get_santa_cords(levels):
-        for i in range(len(levels)):
-            level = levels[i]
-            if CODES["S"] in level:
-                return level.index(CODES["S"]), i
-
-    @staticmethod
-    def get_player_cords(levels):
-        for i in range(len(levels)):
-            level = levels[i]
-
-            if CODES["P"] in level:
-                return level.index(CODES["P"]), i

@@ -2,7 +2,7 @@ import time
 
 import keyboard
 import pygame.time
-from config import PLAYER_SPEED, PLAYER_HITBOX_SIZE, ITEM_SIZE, DISPLAYING_DISTANCE, FULL_BLOCKS, CLOCK
+from config import PLAYER_SPEED, ENTITY_HITBOX_SIZE, ITEM_SIZE, DISPLAYING_DISTANCE, FULL_BLOCKS, CLOCK
 from datetime import datetime
 
 
@@ -22,7 +22,7 @@ class Player:
         self.animation = "forward"
         self.show_collider = False
 
-    def update(self, pg_event):
+    def update(self):
         self.speed_in_tick = ITEM_SIZE[0] * PLAYER_SPEED * CLOCK.tick() / 1000
         self.animate = False
         if keyboard.is_pressed("w"):
@@ -60,31 +60,31 @@ class Player:
             pygame.draw.rect(self.screen, (0, 255, 0),
                              (DISPLAYING_DISTANCE[0] / 2 * ITEM_SIZE[0],
                               DISPLAYING_DISTANCE[1] / 2 * ITEM_SIZE[1],
-                              PLAYER_HITBOX_SIZE[0], PLAYER_HITBOX_SIZE[1]), 1)
+                              ENTITY_HITBOX_SIZE[0], ENTITY_HITBOX_SIZE[1]), 1)
 
     def move_up(self):
         try:
 
             if self.can_move(self.x, self.y - self.speed_in_tick) and \
-                    self.can_move(self.x + PLAYER_HITBOX_SIZE[0], self.y - self.speed_in_tick):
+                    self.can_move(self.x + ENTITY_HITBOX_SIZE[0], self.y - self.speed_in_tick):
                 self.y -= self.speed_in_tick
         except IndexError:
             pass
 
     def move_down(self):
         try:
-            if self.can_move(self.x, self.y + PLAYER_HITBOX_SIZE[1] + self.speed_in_tick) and \
-                    self.can_move(self.x + PLAYER_HITBOX_SIZE[0],
-                                  self.y + PLAYER_HITBOX_SIZE[1] + self.speed_in_tick):
+            if self.can_move(self.x, self.y + ENTITY_HITBOX_SIZE[1] + self.speed_in_tick) and \
+                    self.can_move(self.x + ENTITY_HITBOX_SIZE[0],
+                                  self.y + ENTITY_HITBOX_SIZE[1] + self.speed_in_tick):
                 self.y += self.speed_in_tick
         except IndexError:
             pass
 
     def move_right(self):
         try:
-            if self.can_move(self.x + PLAYER_HITBOX_SIZE[0] + self.speed_in_tick, self.y) and \
-                    self.can_move(self.x + PLAYER_HITBOX_SIZE[0] + self.speed_in_tick,
-                                  self.y + PLAYER_HITBOX_SIZE[1]):
+            if self.can_move(self.x + ENTITY_HITBOX_SIZE[0] + self.speed_in_tick, self.y) and \
+                    self.can_move(self.x + ENTITY_HITBOX_SIZE[0] + self.speed_in_tick,
+                                  self.y + ENTITY_HITBOX_SIZE[1]):
                 self.x += self.speed_in_tick
         except IndexError:
             pass
@@ -93,7 +93,7 @@ class Player:
         try:
             if self.can_move(self.x - self.speed_in_tick, self.y) and \
                     self.can_move(self.x - self.speed_in_tick,
-                                  self.y + PLAYER_HITBOX_SIZE[1]):
+                                  self.y + ENTITY_HITBOX_SIZE[1]):
                 self.x -= self.speed_in_tick
         except IndexError:
             pass
