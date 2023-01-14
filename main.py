@@ -6,16 +6,18 @@ from SceneLoader import SceneLoader
 from Scenes import *
 from config import SCREEN_SIZE
 from LevelLoader import LevelLoader
+import pygame
+
 
 pygame.font.init()
 if __name__ == "__main__":
 
-    sc = display.set_mode(SCREEN_SIZE)
+    sc = display.set_mode(SCREEN_SIZE, vsync=5)
 
     scene_loader = SceneLoader(sc)
     levels = LevelLoader(sc)
     ev = None
-    for i in range(len(levels.levels)):
+    for i in range(len(levels.get_levels())):
         level = levels.levels[i]
         scene_loader.add(LevelsScene(scene_loader, level), f"levels_scene_{i}")
     scene_loader.add(WinScene(scene_loader), "win_scene")
