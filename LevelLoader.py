@@ -1,7 +1,5 @@
-from pprint import pprint
-
-from Entities.Entity import Player, Santa, Monster
-from config import AIR, WALL, GIFT, SPAWN, SANTA, CODES, ITEM_SIZE
+from Entity import Santa, Monster
+from config import CODES, ITEM_SIZE
 
 
 class Level:

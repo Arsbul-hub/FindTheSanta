@@ -1,7 +1,9 @@
+import random
+
 import keyboard
 import pygame.time
 from config import PLAYER_SPEED, ITEM_SIZE, DISPLAYING_DISTANCE, FULL_BLOCKS, CLOCK, SANTA, CODES, \
-    GIFT, MONSTER
+    GIFT, MONSTER, WALL
 from datetime import datetime
 
 
@@ -37,7 +39,7 @@ class Entity:
 
         return False
 
-    def update(self, event):
+    def update(self, event, tick):
         pass
 
     def on_pygame_event(self, event):
@@ -67,7 +69,6 @@ class Entity:
 
     def set_position(self, x, y):
         self.x, self.y = x, y
-        return self
 
     def stop(self):
         self.FORWARD = 0
@@ -82,23 +83,41 @@ class Entity:
         pass
 
     def check_map_collision(self):
-        d = {(self.x, self.y): self.level[int(self.y / ITEM_SIZE[1])][int(self.x / ITEM_SIZE[0])]["type"],
-             (self.x + self.HITBOX_SIZE[0], self.y): self.level[int(self.y / ITEM_SIZE[1])][
-                 int((self.x + self.HITBOX_SIZE[0]) / ITEM_SIZE[0])]["type"],
-             (self.x, self.y + self.HITBOX_SIZE[1]): self.level[int((self.y + self.HITBOX_SIZE[1]) / ITEM_SIZE[1])][
-                 int(self.x / ITEM_SIZE[0])]["type"],
-             (self.x + self.HITBOX_SIZE[0], self.y + self.HITBOX_SIZE[1]):
-                 self.level[int((self.y + self.HITBOX_SIZE[1]) / ITEM_SIZE[1])][
-                     int((self.x + self.HITBOX_SIZE[0]) / ITEM_SIZE[0])]["type"]}
+        d = {
+            (self.x, self.y - self.speed_in_tick): None,
+            (self.x + self.HITBOX_SIZE[0], self.y - self.speed_in_tick): None,
 
+            (self.x, self.y + self.HITBOX_SIZE[1] + self.speed_in_tick): None,
+            (self.x + self.HITBOX_SIZE[0], self.y + self.HITBOX_SIZE[1] + self.speed_in_tick): None,
+
+            (self.x - self.speed_in_tick, self.y): None,
+            (self.x - self.speed_in_tick, self.y + self.HITBOX_SIZE[1]): None,
+
+            (self.x + self.HITBOX_SIZE[0] + self.speed_in_tick, self.y): None,
+            (self.x + self.HITBOX_SIZE[0] + self.speed_in_tick, self.y + self.HITBOX_SIZE[1]): None,
+
+        }
+        for cords in d.keys():
+            cx, cy = cords
+            item = self.level[int(cy / ITEM_SIZE[1])][int(cx / ITEM_SIZE[0])]
+
+            d[cords] = item["type"]
         return d
 
     def check_entity_collision(self):
         d = {
-            (self.x, self.y): [],
-            (self.x + self.HITBOX_SIZE[0], self.y): [],
-            (self.x, self.y + self.HITBOX_SIZE[1]): [],
-            (self.x + self.HITBOX_SIZE[0], self.y + self.HITBOX_SIZE[1]): []
+            (self.x, self.y - self.speed_in_tick): [],
+            (self.x + self.HITBOX_SIZE[0], self.y - self.speed_in_tick): [],
+
+            (self.x, self.y + self.HITBOX_SIZE[1] + self.speed_in_tick): [],
+            (self.x + self.HITBOX_SIZE[0], self.y + self.HITBOX_SIZE[1] + self.speed_in_tick): [],
+
+            (self.x - self.speed_in_tick, self.y): [],
+            (self.x - self.speed_in_tick, self.y + self.HITBOX_SIZE[1]): [],
+
+            (self.x + self.HITBOX_SIZE[0] + self.speed_in_tick, self.y): [],
+            (self.x + self.HITBOX_SIZE[0] + self.speed_in_tick, self.y + self.HITBOX_SIZE[1]): [],
+
         }
         for cords in d.keys():
             for entity in self.level.entities:
@@ -156,7 +175,7 @@ class Entity:
 class Player(Entity):
     NAME = "Player"
 
-    def __init__(self, level, screen):
+    def __init__(self, screen, level):
         super().__init__(screen, level)
 
         self.show_collider = False
@@ -185,7 +204,7 @@ class Player(Entity):
             if event.key == pygame.K_d:
                 self.RIGHT = 0
 
-    def update(self, event):
+    def update(self, event, tick):
         self.surf = f"sprites/player_{self.animation}_{self.sprite_animations_current}.png"
 
         if (datetime.now() - self.sprite_old_time).total_seconds() >= 0.1 and self.animate:
@@ -196,7 +215,7 @@ class Player(Entity):
                 self.sprite_animations_current += 1
             self.sprite_old_time = datetime.now()
 
-        self.speed_in_tick = ITEM_SIZE[0] * PLAYER_SPEED * CLOCK.tick() / 1000
+        self.speed_in_tick = ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
         self.animate = False
 
         if self.FORWARD:
@@ -250,7 +269,7 @@ class Santa(Entity):
         self.direction = self.STOP
         self.gifts = 0
 
-    def update(self, event):
+    def update(self, event, tick):
         self.surf = f"textures/santa.png"
 
 
@@ -259,10 +278,98 @@ class Monster(Entity):
 
     def __init__(self, screen, level):
         super().__init__(screen, level)
-        self.show_collider = False
-
-        self.direction = self.STOP
+        self.show_collider = True
+        self.HITBOX_SIZE = 52, 60
+        self.cooldown = 0
         self.gifts = 0
+        self.up = 1
+        self.down = 2
+        self.left = 3
+        self.right = 4
+        self.old_time_switch = datetime(2012, 3, 5, 23, 8, 15)
+        self.direction = 2
+        self.old_time_rand = datetime.now()
 
-    def update(self, event):
+    def update(self, event, tick):
         self.surf = f"textures/santa.png"
+        self.speed_in_tick = ITEM_SIZE[0] * 4 * tick / 1000
+
+        if self.direction == self.up:
+            self.move_up()
+
+        if self.direction == self.down:
+            self.move_down()
+
+        if self.direction == self.left:
+            self.move_left()
+
+        if self.direction == self.right:
+            self.move_right()
+        # self.move_up()
+
+    def move_up(self):
+        try:
+
+            if self.can_move(self.x, self.y - self.speed_in_tick) and \
+                    self.can_move(self.x + self.HITBOX_SIZE[0], self.y - self.speed_in_tick):
+                self.y -= self.speed_in_tick
+                if (datetime.now() - self.old_time_rand).total_seconds() > 3 and random.choice([True, False]):
+                    self.direction = random.choice([self.down, self.left, self.right])
+                    self.old_time_rand = datetime.now()
+            elif (datetime.now() - self.old_time_switch).total_seconds() > self.cooldown:
+                self.direction = random.choice([self.down, self.left, self.right])
+
+                self.old_time_switch = datetime.now()
+
+        except IndexError:
+            pass
+
+    def move_down(self):
+        try:
+            if self.can_move(self.x, self.y + self.HITBOX_SIZE[1] + self.speed_in_tick) and \
+                    self.can_move(self.x + self.HITBOX_SIZE[0],
+                                  self.y + self.HITBOX_SIZE[1] + self.speed_in_tick):
+                self.y += self.speed_in_tick
+                if (datetime.now() - self.old_time_rand).total_seconds() > 3 and random.choice([True, False]):
+                    self.direction = random.choice([self.up, self.left, self.right])
+                    self.old_time_rand = datetime.now()
+            elif (datetime.now() - self.old_time_switch).total_seconds() > self.cooldown:
+                self.direction = random.choice([self.up, self.left, self.right])
+
+                self.old_time_switch = datetime.now()
+        except IndexError:
+            pass
+
+    def move_right(self):
+        try:
+
+            if self.can_move(self.x + self.HITBOX_SIZE[0] + self.speed_in_tick, self.y) and \
+                    self.can_move(self.x + self.HITBOX_SIZE[0] + self.speed_in_tick,
+                                  self.y + self.HITBOX_SIZE[1]):
+                self.x += self.speed_in_tick
+                if (datetime.now() - self.old_time_rand).total_seconds() > 3 and random.choice([True, False]):
+                    self.direction = random.choice([self.up, self.down, self.left])
+                    self.old_time_rand = datetime.now()
+            elif (datetime.now() - self.old_time_switch).total_seconds() > self.cooldown:
+                self.direction = random.choice([self.up, self.down, self.left])
+
+                self.old_time_switch = datetime.now()
+        except IndexError:
+            pass
+
+    def move_left(self):
+        try:
+            if self.can_move(self.x - self.speed_in_tick, self.y) and \
+                    self.can_move(self.x - self.speed_in_tick,
+                                  self.y + self.HITBOX_SIZE[1]):
+                self.x -= self.speed_in_tick
+                if (datetime.now() - self.old_time_rand).total_seconds() > 3 and random.choice([True, False]):
+                    self.direction = random.choice([self.up, self.down, self.right])
+                    self.old_time_rand = datetime.now()
+            elif (datetime.now() - self.old_time_switch).total_seconds() > self.cooldown:
+                self.direction = random.choice([self.up, self.down, self.right])
+
+                self.old_time_switch = datetime.now()
+
+        except IndexError:
+            pass

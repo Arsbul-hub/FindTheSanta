@@ -20,6 +20,7 @@ def split_animated_gif(gif_file_path):
 
 class Animation:
     def __init__(self, path):
+        self.path = path
         self.frames = split_animated_gif(path)
 
         self.animation_delay = 0.1
@@ -27,9 +28,10 @@ class Animation:
         self.last_time = datetime(2012, 3, 5, 23, 8, 15)
 
         self.current_surf = ""
+        self.surf = self.frames[self.animation_current]
 
     def load(self, screen, size, position):
-        t = pygame.transform.scale(self.frames[self.animation_current], size)
+        t = pygame.transform.scale(self.surf, size)
         rect = t.get_rect().move(position[0], position[1])
         screen.blit(t, rect)
 

@@ -1,11 +1,6 @@
-import keyboard
-import pygame
-
-from Animation import Animation
-from Entities.Entity import Player
+from Entity import Player
 from SceneLoader import Scene
-from config import ITEM_SIZE, DISPLAYING_DISTANCE, SCREEN_SIZE, SANTA, GIFT, MAIN_FONT, CODES
-from pygame_animatedgif import AnimatedGifSprite
+from config import ITEM_SIZE, DISPLAYING_DISTANCE, SCREEN_SIZE, MAIN_FONT, CLOCK, TEXTURES
 
 
 class LevelsScene(Scene):
@@ -13,7 +8,7 @@ class LevelsScene(Scene):
         super().__init__(scene_loader)
         self.level = level
 
-        self.player = Player(self.level, scene_loader.screen)
+        self.player = Player(scene_loader.screen, self.level)
         # self.player.map_collision_event = self.coll_event
         self.player.on_win = self.on_player_win
 
@@ -28,7 +23,7 @@ class LevelsScene(Scene):
 
     def update_event(self, event):
         self.scene_loader.screen.fill((0, 0, 0))
-
+        tick = CLOCK.tick()
         for i in range(int(self.player.y / ITEM_SIZE[1] - DISPLAYING_DISTANCE[1] / 2) - 1,
                        int(self.player.y / ITEM_SIZE[1] + DISPLAYING_DISTANCE[1] / 2) + 1):
             for j in range(int(self.player.x / ITEM_SIZE[0] - DISPLAYING_DISTANCE[0] / 2) - 1,
@@ -44,14 +39,16 @@ class LevelsScene(Scene):
 
                             item["animation"].load(self.scene_loader.screen, (ITEM_SIZE[0], ITEM_SIZE[1]), (x, y))
                         else:
-                            scaled_block = pygame.transform.scale(pygame.image.load(item["texture"]),
-                                                                  (ITEM_SIZE[0], ITEM_SIZE[1]))
+                            scaled_block = TEXTURES[item["texture"]].convert()
                             rect = scaled_block.get_rect().move(x, y)
                             self.scene_loader.screen.blit(scaled_block, rect)
 
                 except Exception:
                     pass
-        text1 = MAIN_FONT.render(f"Собрано подарков: {self.player.gifts}", True, (100, 100, 100))
+        fps_text = MAIN_FONT.render(f"fps: {round(CLOCK.get_fps(), 1)}", True, (200, 0, 0))
+
+        self.scene_loader.screen.blit(fps_text, (SCREEN_SIZE[0] - fps_text.get_rect().width - 10, 0))
+        text1 = MAIN_FONT.render(f"""Собрано подарков: {self.player.gifts}""", True, (100, 100, 100))
         self.scene_loader.screen.blit(text1, (0, 0))
 
         for entity in self.level.entities:
@@ -59,12 +56,12 @@ class LevelsScene(Scene):
                         entity.y - self.player.y + (DISPLAYING_DISTANCE[1] / 2) * ITEM_SIZE[1])
 
             entity.draw(draw_pos, size=ITEM_SIZE)
-            entity.update(event)
+            entity.update(event, tick)
         self.player.draw((DISPLAYING_DISTANCE[0] / 2 * ITEM_SIZE[0],
                           DISPLAYING_DISTANCE[1] / 2 * ITEM_SIZE[1] - ITEM_SIZE[1] / 2),
                          (DISPLAYING_DISTANCE[0] / 2 * ITEM_SIZE[0],
                           DISPLAYING_DISTANCE[1] / 2 * ITEM_SIZE[1]))
-        self.player.update(event)
+        self.player.update(event, tick)
 
         self.player.check_entity_collision()
 
