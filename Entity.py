@@ -2,8 +2,9 @@ import random
 
 import keyboard
 import pygame.time
+
 from config import PLAYER_SPEED, ITEM_SIZE, DISPLAYING_DISTANCE, FULL_BLOCKS, CLOCK, SANTA, CODES, \
-    GIFT, MONSTER, WALL
+    GIFT, MONSTER, WALL, SCREEN_SIZE
 from datetime import datetime
 
 
@@ -15,11 +16,12 @@ class Entity:
     RIGHT = 0
     NAME = "Entity"
 
-    def __init__(self, screen, level):
+    def __init__(self, screen, level=None):
         self.x, self.y = (0, 0)
         self.level = level
 
         self.draw_x, self.draw_y = 0, 0
+
         self.speed_in_tick = 0
         self.screen = screen
         self.sprite_animations = []
@@ -31,6 +33,7 @@ class Entity:
         self.show_collider = False
         self.surf = None
         self.HITBOX_SIZE = ITEM_SIZE
+
         self.lives = 3
 
     def __eq__(self, other):
@@ -97,11 +100,15 @@ class Entity:
             (self.x + self.HITBOX_SIZE[0] + self.speed_in_tick, self.y + self.HITBOX_SIZE[1]): None,
 
         }
-        for cords in d.keys():
-            cx, cy = cords
-            item = self.level[int(cy / ITEM_SIZE[1])][int(cx / ITEM_SIZE[0])]
+        try:
+            for cords in d.keys():
+                item = self.level[int(cords[1] / ITEM_SIZE[1])][int(cords[0] / ITEM_SIZE[0])]
 
-            d[cords] = item["type"]
+                d[cords] = item["type"]
+
+        except IndexError:
+            pass
+
         return d
 
     def check_entity_collision(self):
@@ -373,3 +380,56 @@ class Monster(Entity):
 
         except IndexError:
             pass
+
+
+class Main_Screen_Person(Entity):
+    NAME = "Player"
+
+    def __init__(self, screen):
+
+        super().__init__(screen)
+
+        self.show_collider = False
+        self.x = 110
+        self.direction = "right"
+        self.surf = f"textures/santa.png"
+        self.HITBOX_SIZE = 100, 120
+        self.y = SCREEN_SIZE[1] - self.HITBOX_SIZE[1] - 30
+
+    def on_pygame_event(self, event):
+        pass
+
+    def update(self, event, tick):
+
+        self.speed_in_tick = ITEM_SIZE[0] * 3 * tick / 1000
+        if self.direction == "right":
+            self.x += self.speed_in_tick
+
+        else:
+            self.x -= self.speed_in_tick
+
+        if self.x >= SCREEN_SIZE[0] - self.HITBOX_SIZE[0]:
+            self.direction = "left"
+
+        elif self.x <= 0:
+            self.direction = "right"
+
+    def draw(self, texture_position, hitbox_position=None, size=None):
+        if self.surf:
+            if size:
+
+                if self.direction == "left":
+                    surf = pygame.transform.flip(pygame.transform.scale(pygame.image.load(self.surf), size), False, False)
+
+                else:
+                    surf = pygame.transform.flip(pygame.transform.scale(pygame.image.load(self.surf), size), True, False)
+            else:
+                if self.direction == "left":
+                    surf = pygame.transform.rotate(pygame.image.load(self.surf), 90)
+
+                else:
+                    surf = pygame.image.load(self.surf)
+
+            rect = surf.get_rect()
+            rect.x, rect.y = texture_position
+            self.screen.blit(surf, rect)
