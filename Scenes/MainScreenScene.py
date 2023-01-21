@@ -24,7 +24,7 @@ class MainScreenScene(Scene):
         self.scene_loader.screen.blit(text1, (SCREEN_SIZE[0] // 2 - text1.get_size()[0] / 2,
                                               SCREEN_SIZE[1] // 2 - text1.get_size()[1] / 2))
         self.person.update(event, CLOCK.tick())
-        self.person.draw((self.person.x, self.person.y), size=self.person.HITBOX_SIZE)
+        self.person.draw((self.person.x, self.person.y))
 
     def on_pygame_event(self, event):
         if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:

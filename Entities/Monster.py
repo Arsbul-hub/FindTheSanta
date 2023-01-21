@@ -22,9 +22,10 @@ class Monster(Entity):
         self.direction = 2
         self.old_time_rand = datetime.now()
         self.size = self.HITBOX_SIZE
+        self.set_surf("textures/santa.png", self.HITBOX_SIZE, True)
 
     def update(self, event, tick):
-        self.surf = f"textures/santa.png"
+
         self.speed_in_tick = ITEM_SIZE[0] * MONSTERS_SPEED * tick / 1000
 
         if self.direction == self.up:

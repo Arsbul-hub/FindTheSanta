@@ -12,5 +12,4 @@ class Santa(Entity):
         self.direction = self.STOP
         self.gifts = 0
 
-    def update(self, event, tick):
-        self.surf = f"textures/santa.png"
+        self.set_surf(f"textures/santa.png", self.HITBOX_SIZE, True)

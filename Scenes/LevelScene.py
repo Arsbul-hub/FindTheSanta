@@ -1,3 +1,5 @@
+import time
+
 from Entities.Player import Player
 from ImageLoader import StaticImage
 from Scenes import Scene
@@ -31,21 +33,21 @@ class LevelsScene(Scene):
         self.player.on_pygame_event(event)
 
     def update_event(self, event):
+
         self.scene_loader.screen.fill((0, 0, 0))
         tick = CLOCK.tick()
 
         self.draw_first_layer()
         player_draw_cords = self.player.x - self.player.x + (DISPLAYING_DISTANCE[0] / 2) * ITEM_SIZE[0], \
                             self.player.y - self.player.y + (DISPLAYING_DISTANCE[1] / 2) * ITEM_SIZE[1]
-
-        self.player.draw(player_draw_cords, size=self.player.HITBOX_SIZE)
+        self.player.draw(player_draw_cords)
 
         self.player.check_entity_collision()
         for entity in self.level.entities:
             draw_pos = (entity.x - self.player.x + (DISPLAYING_DISTANCE[0] / 2) * ITEM_SIZE[0],
                         entity.y - self.player.y + (DISPLAYING_DISTANCE[1] / 2) * ITEM_SIZE[1])
-            print(entity.NAME)
-            entity.draw(draw_pos, size=entity.size)
+
+            entity.draw(draw_pos)
             entity.update(event, tick)
 
         self.draw_second_layer()
@@ -57,11 +59,11 @@ class LevelsScene(Scene):
         text1 = MAIN_FONT.render(f"""Собрано подарков: {self.player.gifts}""", True, (100, 100, 100))
         self.scene_loader.screen.blit(text1, (0, 0))
         for lives in range(self.player.lives):
-            self.player_health_icon.load(self.scene_loader.screen,
+            self.player_health_icon.draw(self.scene_loader.screen,
                                          (self.player_health_icon.size[0] * lives + player_draw_cords[0] +
                                           self.player.HITBOX_SIZE[0] / 2 - (
                                                   self.player_health_icon.size[1] * 3) / 2,
-                                          player_draw_cords[1] - self.player.HITBOX_SIZE[1] / 2))
+                                          player_draw_cords[1] - 30))
 
     def draw_first_layer(self):
         for i in range(int(self.player.y / ITEM_SIZE[1] - DISPLAYING_DISTANCE[1] / 2) - 1,
@@ -77,14 +79,14 @@ class LevelsScene(Scene):
                         h, w = ITEM_SIZE[0], ITEM_SIZE[1]
                         if not item["second_layer"]:
 
-                            CODES[" "]["texture"].load(self.scene_loader.screen, (x, y))
-                            item["texture"].load(self.scene_loader.screen,
+                            CODES[" "]["texture"].draw(self.scene_loader.screen, (x, y))
+                            item["texture"].draw(self.scene_loader.screen,
                                                  (x - item["texture"].size[0] / 2 + ITEM_SIZE[0] / 2,
                                                   y - item["texture"].size[1] + ITEM_SIZE[1]))
 
                         else:
 
-                            CODES[" "]["texture"].load(self.scene_loader.screen, (x, y))
+                            CODES[" "]["texture"].draw(self.scene_loader.screen, (x, y))
 
                 except IndexError:
                     pass
@@ -102,7 +104,7 @@ class LevelsScene(Scene):
                                 i * ITEM_SIZE[1] - self.player.y + (DISPLAYING_DISTANCE[1] / 2) * ITEM_SIZE[1])
                         h, w = ITEM_SIZE[0], ITEM_SIZE[1]
                         if item["second_layer"]:
-                            item["texture"].load(self.scene_loader.screen,
+                            item["texture"].draw(self.scene_loader.screen,
                                                  (x - item["texture"].size[0] / 2 + ITEM_SIZE[0] / 2,
                                                   y - item["texture"].size[1] + ITEM_SIZE[1]))
 

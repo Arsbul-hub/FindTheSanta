@@ -2,6 +2,7 @@ from datetime import datetime
 
 import pygame
 
+from ImageLoader import StaticImage
 from config import ITEM_SIZE, FULL_BLOCKS
 
 
@@ -45,16 +46,12 @@ class Entity:
     def on_pygame_event(self, event):
         pass
 
-    def draw(self, texture_position, hitbox_position=None, size=None):
-        if self.surf:
-            if size:
+    def set_surf(self, path, size, alpha=False):
+        self.surf = StaticImage(path, size, alpha)
 
-                surf = pygame.transform.scale(pygame.image.load(self.surf), size)
-            else:
-                surf = pygame.image.load(self.surf)
-            rect = surf.get_rect()
-            rect.x, rect.y = texture_position
-            self.screen.blit(surf, rect)
+    def draw(self, texture_position, hitbox_position=None):
+        if self.surf:
+            self.surf.draw(self.screen, texture_position)
         if self.show_collider:
             if hitbox_position:
                 pygame.draw.rect(self.screen, (0, 255, 0),

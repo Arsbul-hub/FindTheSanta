@@ -31,9 +31,27 @@ class Animation:
 
         self.current_surf = ""
 
-    def load(self, screen, position):
+    def draw(self, screen, position):
 
         rect = self.frames[self.animation_current].get_rect().move(position[0], position[1])
+
+        if not self.alpha:
+            screen.blit(self.frames[self.animation_current].convert(), rect)
+
+        else:
+            screen.blit(self.frames[self.animation_current], rect)
+        if (datetime.now() - self.last_time).total_seconds() >= self.animation_delay:
+
+            if self.animation_current == len(self.frames) - 1:
+                self.animation_current = 0
+            else:
+                self.animation_current += 1
+            self.last_time = datetime.now()
+
+    def draw_flipped(self, screen, position, flip):
+
+        rect = pygame.transform.flip(self.frames[self.animation_current], flip[0], flip[1]).get_rect().move(position[0],
+                                                                                                            position[1])
 
         if not self.alpha:
             screen.blit(self.frames[self.animation_current].convert(), rect)
@@ -59,10 +77,19 @@ class StaticImage:
         self.alpha = alpha
         self.surf = pygame.transform.scale(pygame.image.load(path), size)
 
-    def load(self, screen, position):
+    def draw(self, screen, position):
         rect = self.surf.get_rect().move(position[0], position[1])
         if not self.alpha:
 
             screen.blit(self.surf.convert(), rect)
         else:
             screen.blit(self.surf, rect)
+
+    def draw_flipped(self, screen, position, flip):
+        flipped_surf = pygame.transform.flip(self.surf, flip[0], flip[1])
+        rect = flipped_surf.get_rect().move(position[0], position[1])
+        if not self.alpha:
+
+            screen.blit(flipped_surf.convert(), rect)
+        else:
+            screen.blit(flipped_surf, rect)

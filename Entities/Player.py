@@ -14,7 +14,7 @@ class Player(Entity):
     def __init__(self, screen, level):
         super().__init__(screen, level)
 
-        self.show_collider = True
+        self.show_collider = False
         self.set_position(level.player_spawn[0] * ITEM_SIZE[0], level.player_spawn[1] * ITEM_SIZE[1])
         self.direction = self.STOP
         self.gifts = 0
@@ -53,7 +53,7 @@ class Player(Entity):
                 self.SPEED_BOOST = 0
 
     def update(self, event, tick):
-        self.surf = f"sprites/player_{self.animation}_{self.sprite_animations_current}.png"
+        self.set_surf(f"sprites/player_{self.animation}_{self.sprite_animations_current}.png", self.HITBOX_SIZE, True)
 
         if (datetime.now() - self.sprite_old_time).total_seconds() >= 0.1 and self.animate:
 
@@ -61,6 +61,7 @@ class Player(Entity):
                 self.sprite_animations_current = 0
             else:
                 self.sprite_animations_current += 1
+
             self.sprite_old_time = datetime.now()
 
         self.speed_in_tick = ITEM_SIZE[0] * self.speed * tick / 1000
@@ -96,7 +97,6 @@ class Player(Entity):
                 self.speed_boost += 1
                 self.old_speed_boost = datetime.now()
 
-
         # if self.RIFT:
         #     self.do_rift(tick)
         # self.map_collision_event(self.check_map_collision())
@@ -123,36 +123,36 @@ class Player(Entity):
                     self.on_win()
                     break
 
-    def do_rift(self, tick):
-        if self.can_rift:
-            if self.FORWARD:
-                self.rift_target_pos = (self.x, self.y - 20)
-                self.rift_direction = "forward"
-            elif self.DOWN:
-                self.rift_target_pos = (self.x, self.y + 20)
-                self.rift_direction = "down"
-                w
-            elif self.RIGHT:
-                self.rift_target_pos = (self.x + 20, self.y)
-                self.rift_direction = "right"
-            elif self.LEFT:
-                self.rift_target_pos = (self.x - 20, self.y)
-                self.rift_direction = "left"
-            else:
-                self.rift_target_pos = (self.x, self.y - 20)
-                self.rift_direction = "forward"
-            self.can_rift = False
-        else:
-            if self.rift_direction == "forward" and self.y > self.rift_target_pos[1]:
-                self.y -= ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
-            elif self.rift_direction == "down" and self.y < self.rift_target_pos[1]:
-                self.y += ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
-            elif self.rift_direction == "left" and self.x > self.rift_target_pos[0]:
-                self.x -= ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
-            elif self.rift_direction == "right" and self.x > self.rift_target_pos[0]:
-                self.x += ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
-            else:
-                self.can_rift = True
+    # def do_rift(self, tick):
+    #     if self.can_rift:
+    #         if self.FORWARD:
+    #             self.rift_target_pos = (self.x, self.y - 20)
+    #             self.rift_direction = "forward"
+    #         elif self.DOWN:
+    #             self.rift_target_pos = (self.x, self.y + 20)
+    #             self.rift_direction = "down"
+    #
+    #         elif self.RIGHT:
+    #             self.rift_target_pos = (self.x + 20, self.y)
+    #             self.rift_direction = "right"
+    #         elif self.LEFT:
+    #             self.rift_target_pos = (self.x - 20, self.y)
+    #             self.rift_direction = "left"
+    #         else:
+    #             self.rift_target_pos = (self.x, self.y - 20)
+    #             self.rift_direction = "forward"
+    #         self.can_rift = False
+    #     else:
+    #         if self.rift_direction == "forward" and self.y > self.rift_target_pos[1]:
+    #             self.y -= ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
+    #         elif self.rift_direction == "down" and self.y < self.rift_target_pos[1]:
+    #             self.y += ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
+    #         elif self.rift_direction == "left" and self.x > self.rift_target_pos[0]:
+    #             self.x -= ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
+    #         elif self.rift_direction == "right" and self.x > self.rift_target_pos[0]:
+    #             self.x += ITEM_SIZE[0] * PLAYER_SPEED * tick / 1000
+    #         else:
+    #             self.can_rift = True
 
     def on_win(self):
         pass

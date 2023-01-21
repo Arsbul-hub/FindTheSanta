@@ -14,9 +14,10 @@ class Main_Screen_Person(Entity):
         self.show_collider = False
         self.x = 110
         self.direction = "right"
-        self.surf = f"textures/santa.png"
+
         self.HITBOX_SIZE = 100, 120
         self.y = SCREEN_SIZE[1] - self.HITBOX_SIZE[1] - 30
+        self.set_surf(f"textures/santa.png", self.HITBOX_SIZE, True)
 
     def on_pygame_event(self, event):
         pass
@@ -36,22 +37,11 @@ class Main_Screen_Person(Entity):
         elif self.x <= 0:
             self.direction = "right"
 
-    def draw(self, texture_position, hitbox_position=None, size=None):
+    def draw(self, texture_position, hitbox_position=None):
         if self.surf:
-            if size:
 
-                if self.direction == "left":
-                    surf = pygame.transform.flip(pygame.transform.scale(pygame.image.load(self.surf), size), False, False)
+            if self.direction == "left":
+                self.surf.draw_flipped(self.screen, texture_position, (False, False))
 
-                else:
-                    surf = pygame.transform.flip(pygame.transform.scale(pygame.image.load(self.surf), size), True, False)
             else:
-                if self.direction == "left":
-                    surf = pygame.transform.rotate(pygame.image.load(self.surf), 90)
-
-                else:
-                    surf = pygame.image.load(self.surf)
-
-            rect = surf.get_rect()
-            rect.x, rect.y = texture_position
-            self.screen.blit(surf, rect)
+                self.surf.draw_flipped(self.screen, texture_position, (True, False))

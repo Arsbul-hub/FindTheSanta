@@ -17,7 +17,7 @@ import pygame
 pygame.font.init()
 if __name__ == "__main__":
 
-    sc = display.set_mode(SCREEN_SIZE, vsync=1)
+    sc = display.set_mode(SCREEN_SIZE, vsync=5)
 
     scene_loader = SceneLoader(sc)
     levels = LevelLoader(sc)
