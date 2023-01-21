@@ -1,4 +1,5 @@
-from Entity import Santa, Monster
+from Entities.Santa import Santa
+from Entities.Monster import Monster
 from config import CODES, ITEM_SIZE
 
 
@@ -33,9 +34,12 @@ def get_monsters_cords(level):
     d = []
     for i in range(len(level)):
         line = level[i]
-        if "M" in line:
-            d.append((line.index("M"), i))
+        for j in range(len(line)):
+            block = line[j]
+            if "M" == block:
+                d.append((j, i))
     return d
+
 
 class LevelLoader:
     def __init__(self, screen):

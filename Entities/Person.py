@@ -1,23 +1,7 @@
-import random
+import pygame
 
-import keyboard
-import pygame.time
-
-from config import PLAYER_SPEED, ITEM_SIZE, DISPLAYING_DISTANCE, FULL_BLOCKS, CLOCK, SANTA, CODES, \
-    INTERACTIVE, MONSTER, WALL, SCREEN_SIZE
-from datetime import datetime
-
-
-
-
-
-
-
-
-
-
-
-
+from Entities import Entity
+from config import SCREEN_SIZE, ITEM_SIZE
 
 
 class Main_Screen_Person(Entity):
