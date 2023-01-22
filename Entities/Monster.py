@@ -11,7 +11,7 @@ class Monster(Entity):
     def __init__(self, screen, level):
         super().__init__(screen, level)
         self.show_collider = True
-        self.HITBOX_SIZE = 52, 60
+        self.HITBOX_SIZE = 70, 70
         self.cooldown = 0
         self.gifts = 0
         self.up = 1
@@ -22,7 +22,7 @@ class Monster(Entity):
         self.direction = 2
         self.old_time_rand = datetime.now()
         self.size = self.HITBOX_SIZE
-        self.set_surf("textures/santa.png", self.HITBOX_SIZE, True)
+        self.set_surf("textures/monster.png", self.HITBOX_SIZE, True)
 
     def update(self, event, tick):
 

@@ -1,4 +1,5 @@
 from Entities import Entity
+from config import ITEM_SIZE
 
 
 class Santa(Entity):
@@ -8,7 +9,7 @@ class Santa(Entity):
         super().__init__(screen, level)
         self.show_collider = False
 
-        self.size = self.HITBOX_SIZE
+        self.HITBOX_SIZE = ITEM_SIZE[0], ITEM_SIZE[1] + 20
         self.direction = self.STOP
         self.gifts = 0
 

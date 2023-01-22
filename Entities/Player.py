@@ -4,7 +4,7 @@ import pygame
 
 from Entities import Entity
 from Entities.Santa import Santa
-from config import ITEM_SIZE, PLAYER_SPEED, INTERACTIVE, CODES
+from config import ITEM_SIZE, PLAYER_SPEED, INTERACTIVE, CODES, PLAYER_SPEED_BOOST
 
 
 class Player(Entity):
@@ -85,21 +85,17 @@ class Player(Entity):
             self.animate = True
         if self.SPEED_BOOST and 1 in [self.FORWARD, self.DOWN, self.RIGHT, self.LEFT]:
             if self.speed_boost > 0:
-                self.speed = PLAYER_SPEED * 6
-                if (datetime.now() - self.old_speed_boost).total_seconds() > 0.05:
-                    self.speed_boost -= 1
-                    self.old_speed_boost = datetime.now()
+                self.speed = PLAYER_SPEED_BOOST
+
+                self.speed_boost -= 3 * tick / 1000
+
             else:
                 self.speed = PLAYER_SPEED
         elif not self.SPEED_BOOST:
             self.speed = PLAYER_SPEED
-            if (datetime.now() - self.old_speed_boost).total_seconds() > 0.5 and self.speed_boost < 10:
-                self.speed_boost += 1
-                self.old_speed_boost = datetime.now()
+            if self.speed_boost < 10:
+                self.speed_boost += 1 * tick / 1000
 
-        # if self.RIFT:
-        #     self.do_rift(tick)
-        # self.map_collision_event(self.check_map_collision())
         for cords, block_type in self.check_map_collision().items():
 
             if block_type == INTERACTIVE:

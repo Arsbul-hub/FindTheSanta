@@ -1,34 +1,46 @@
 #level
 _______________________________________________________________________
 |                                                                     |
-|____                                                                 |
-|   |                                                                 |
-|   |___|                                                             |
-| |  |  |                                                             |
-| |  |  |                                                             |
-| |  |  |                    _     _                                  |
-| |  |  |         M                             #  P                  |
-|                 M             |              #                      |
-|                 M           |___|            #                      |
-|                 M           |   |            #                      |
-|                 M           |   |  ||||||   _#M _____               |
-|                 M                  ||||||  G #  _   _               |
-|                 M                  ||||||    #### S _               |
-|                 M                  ______  G #  _   _               |
-|                 M                            #  _____               |
-|                 M                                                   |
-|                 M       E     C                                     |
-|                 M                                                   |
-|                 M                                                   |
+|                                         |||||||||||||               |
+|                                         |     S     |               |
+|                                         _ G       G _               |
+|                                          #                          |
+|                                         #                           |
+| EEEEEEEEEEEEEEEEEeEEEE                  #                           |
+| EEEEEEEEEEeEEEEEEEEEEE                  #                           |
+| EEEEEEEEEEEEEEEEEEEEEE                  #           |_____|         |
+| EEEeEEEEEEeEEEEeeEEEEE                   #          |  G  |         |
+| EEEEEEEEEEEEEEEEEEEEEE                  # ### # # #       |         |
+| EEEEEEEEEEeEEEEEEEEEEE                  #           |  G  |         |
+| EEEEEEEEEEEEEEEEEEEEEE                              |_____|         |
+| EEEEEEEEEEEEEEEEEEEEEE                  #                           |
+| EEEEEe  # ## #  EeEEEe                  #                           |
+| EEEeE #eeeeeeee #      t      <         #                           |
+| EEEe # EEEEEEEE # ######       P### # ##                            |
+| eeeeGEEEEEEEEEEEEEEEEe                                              |
+| eEEeeEeEEEEEEEEEeEEEEe                                              |
+|                                                                     |
 _______________________________________________________________________
 #level
-________________________
-|                      |
-|                      |
-|            P         |
-|                      |
-|                      |
-|        S             |
-|                      |
-|                      |
-________________________
+_______________________________________________________________________
+|               EEEEeEEeEEEEEEeeEEEEEEEEEEEeEEEeEEEEEeEEEEEE          |
+|               EEEE                                      EE          |
+|               EEEe  e                             e     EE          |
+|               EeEE  S            e            M         EE          |
+|               EEEe e                                    eE          |
+|               EEEE      e      G            E           eE          |
+| EEEEEEEEEEEEEEEEEeEEEEeEEEEeEEEEEEeEEEEEEEEEE           eE          |
+| EEEEEEEEEEeEEEEEEEEEEEEEEEEEEEEE            E           EE          |
+| EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE     EeEEEE           eE          |
+| EEEeEEEEEEeEEEEeeEEEEEEEEEEEEEEEEE     E G EE           eE          |
+| EEEEEEEEEEEEEEEEEEEEEEsesssseessEEEEEEEE   EE           EE          |
+| EEEEEEEEEEeEEEEEEEEEEE   e                              EE          |
+| EEEEEEEEEEEEEEEEEEEEEE          EEEEeEEEEEEEee     EEeEEE           |
+| EEEEEEEEEEEEEEEEEEEEEE          EE           e     e                |
+| EEEEEe  # ## #  EeEEEe          EE           e     E                |
+| EEEeE #eeeeeeee #               EE           E     E                |
+| EEEe # EEEEEEEEEEEEEEE          EE           E     e                |
+| eeeeGEEEEEEEEEEEEEEEEe          EE           | GGG |                |
+| eEEeeEeEEEEEEEEEeEEEEe    P     EE           _______                |
+| EEEEEEEEEEEEEEEEEEEEE           Ee                                  |
+_______________________________________________________________________

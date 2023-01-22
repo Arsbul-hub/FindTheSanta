@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c6eb450e-c713-46f6-b8eb-8cda1e2442d4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Scenes/AllLevelsScene.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Scenes/AllLevelsScene.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Scenes/MainScreenScene.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Scenes/MainScreenScene.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../levels.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../levels.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2KgT1IsUSijQRi1Ds1p1z89PV0D" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c6eb450e-c713-46f6-b8eb-8cda1e2442d4" name="Changes" comment="" />
+      <created>1674395009613</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674395009613</updated>
+    </task>
+    <servers />
+  </component>
+</project>

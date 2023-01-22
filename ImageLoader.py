@@ -83,7 +83,7 @@ class StaticImage:
 
             screen.blit(self.surf.convert(), rect)
         else:
-            screen.blit(self.surf, rect)
+            screen.blit(self.surf.convert_alpha(), rect)
 
     def draw_flipped(self, screen, position, flip):
         flipped_surf = pygame.transform.flip(self.surf, flip[0], flip[1])
