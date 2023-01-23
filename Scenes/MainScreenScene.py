@@ -45,7 +45,7 @@ class MainScreenScene(Scene):
         text1 = MAIN_FONT.render('Для старта нажмите любую клавишу', True, (self.start_text_opacity, self.start_text_opacity, self.start_text_opacity))
         self.scene_loader.screen.blit(text1, (SCREEN_SIZE[0] // 2 - text1.get_size()[0] / 2,
                                               SCREEN_SIZE[1] // 2 - text1.get_size()[1] / 2 + 150))
-        self.person.update(event, tick)
+        self.person.on_update(event, tick)
         self.person.draw((self.person.x, self.person.y))
 
         self.start_text_opacity += self.hiding_speed * tick / 1000

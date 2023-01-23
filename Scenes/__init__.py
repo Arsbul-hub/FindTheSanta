@@ -8,6 +8,8 @@ class Scene:
     def on_pygame_event(self, event):
         pass
 
+    def on_switch(self):
+        pass
 
 class SceneLoader:
     def __init__(self, screen):
@@ -22,6 +24,7 @@ class SceneLoader:
 
     def switch_scene(self, name):
         self.current_scene = name
+        self.get_current().on_switch()
 
     def get_current(self):
         return self.scenes[self.current_scene]

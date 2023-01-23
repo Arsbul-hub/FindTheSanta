@@ -32,7 +32,9 @@ class Entity:
         self.surf = None
         self.HITBOX_SIZE = ITEM_SIZE
         self.size = (0, 0)
-        self.lives = 3
+        self.lives = 2
+
+        self.spawned = False
 
     def __eq__(self, other):
         if self.NAME == other.NAME:
@@ -40,8 +42,12 @@ class Entity:
 
         return False
 
-    def update(self, event, tick):
+    def on_update(self, event, tick):
         pass
+
+    def update(self, event, tick):
+        if self.spawned:
+            self.on_update(event, tick)
 
     def on_pygame_event(self, event):
         pass
@@ -171,3 +177,17 @@ class Entity:
                 self.x -= self.speed_in_tick
         except IndexError:
             pass
+
+    def on_spawned(self):
+        pass
+
+    def on_killed(self):
+        pass
+
+    def spawn(self):
+        self.spawned = True
+        self.on_spawned()
+
+    def kill(self):
+        self.spawned = False
+        self.on_killed()

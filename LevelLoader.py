@@ -2,6 +2,7 @@ from Entities.Santa import Santa
 from Entities.Monster import Monster
 from Exceptions import MapException
 from config import CODES, ITEM_SIZE
+from datetime import timedelta
 
 
 class Level:
@@ -11,6 +12,7 @@ class Level:
         self.santa_spawn = (0, 0)
         self.gifts = 0
         self.player_spawn = (0, 0)
+        self.loose_time = timedelta(minutes=0, seconds=0)
 
     def __getitem__(self, index):
         return self.level_map[index]
@@ -44,6 +46,17 @@ def get_monsters_cords(level):
     return d
 
 
+def get_loose_time(str_level):
+    d = []
+    time_line = str_level.split("\n")[0]
+
+    minutes, seconds = time_line.split(":")
+
+    minutes, seconds = int(minutes), int(seconds)
+
+    return timedelta(minutes=minutes, seconds=seconds)
+
+
 def get_gifts_count(level):
     d = 0
     for i in range(len(level)):
@@ -51,7 +64,6 @@ def get_gifts_count(level):
         for j in range(len(line)):
             block = line[j]
             if block == CODES["G"]:
-
                 d += 1
     return d
 
@@ -65,7 +77,8 @@ class LevelLoader:
             levels = f.read().split("#level\n")[1:]
         for level in levels:
             out_level_map = []
-            for line in level.split("\n"):
+
+            for line in level.split("\n")[1:]:
 
                 list_items = []
                 for i in line:
@@ -80,6 +93,7 @@ class LevelLoader:
 
             out_level = Level()
 
+            out_level.loose_time = get_loose_time(level)
             out_level.level_map = out_level_map
             out_level.player_spawn = get_player_cords(out_level_map)
             out_level.level_map[out_level.player_spawn[1]][out_level.player_spawn[0]] = CODES[" "]

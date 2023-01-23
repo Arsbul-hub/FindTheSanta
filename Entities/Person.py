@@ -22,7 +22,7 @@ class Main_Screen_Person(Entity):
     def on_pygame_event(self, event):
         pass
 
-    def update(self, event, tick):
+    def on_update(self, event, tick):
 
         self.speed_in_tick = ITEM_SIZE[0] * 3 * tick / 1000
         if self.direction == "right":

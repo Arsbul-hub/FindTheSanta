@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time, timedelta
 
 import pygame
 
@@ -24,9 +24,14 @@ class Player(Entity):
         # self.can_rift = True
         # self.rift_target_pos = None
         # self.rift_direction = None
+        self.god_mode = False
+        self.loose_time = None
         self.speed = PLAYER_SPEED
         self.speed_boost = 10
         self.old_speed_boost = datetime(2012, 3, 5, 23, 8, 15)  # время старого отнимание шкалы
+
+    def on_spawned(self):
+        self.loose_time = datetime.now() + self.level.loose_time
 
     def on_pygame_event(self, event):
         if event.type == pygame.KEYDOWN:
@@ -52,7 +57,7 @@ class Player(Entity):
             if event.key == pygame.K_LSHIFT:
                 self.SPEED_BOOST = 0
 
-    def update(self, event, tick):
+    def on_update(self, event, tick):
         self.set_surf(f"sprites/player_{self.animation}_{self.sprite_animations_current}.png", self.HITBOX_SIZE, True)
 
         if (datetime.now() - self.sprite_old_time).total_seconds() >= 0.1 and self.animate:
@@ -106,7 +111,7 @@ class Player(Entity):
 
             for entity in entities:
                 if entity.NAME == "Monster" and (
-                        datetime.now() - self.old_hit_time).total_seconds() > 1 and self.lives > 0:
+                        datetime.now() - self.old_hit_time).total_seconds() > 1 and self.lives > 0 and not self.god_mode:
 
                     self.lives -= 1
                     self.old_hit_time = datetime.now()
@@ -116,8 +121,21 @@ class Player(Entity):
                     self.on_loose()
                     break
                 if entity.NAME == "Santa":
-                    self.on_win()
+
+                    if self.gifts == self.level.gifts:
+                        self.on_win()
+                    else:
+                        self.on_end_game_failed()
                     break
+        if datetime.now() >= self.loose_time and not self.god_mode:
+            self.on_loose()
+
+    def get_loose_time(self):
+        delta = timedelta(seconds=(self.loose_time - datetime.now()).seconds)
+        delta = str(delta).split(":")
+        minutes = delta[1]
+        seconds = delta[2]
+        return minutes, seconds
 
     # def do_rift(self, tick):
     #     if self.can_rift:
@@ -154,4 +172,7 @@ class Player(Entity):
         pass
 
     def on_loose(self):
+        pass
+
+    def on_end_game_failed(self):
         pass

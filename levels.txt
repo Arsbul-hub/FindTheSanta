@@ -1,5 +1,6 @@
 #level
-_______________________________________________________________________
+0:5
+|_____________________________________________________________________|
 |                                                                     |
 |                                         |||||||||||||               |
 |                                         |     S     |               |
@@ -22,7 +23,8 @@ _______________________________________________________________________
 |                                                                     |
 _______________________________________________________________________
 #level
-_______________________________________________________________________
+2:0
+|_____________________________________________________________________|
 |               EEEEeEEeEEEEEEeeEEEEEEEEEEEeEEEeEEEEEeEEEEEE          |
 |               EEEE                                      EE          |
 |               EEEe  e                             e     EE          |
@@ -34,13 +36,37 @@ _______________________________________________________________________
 | EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE     EeEEEE           eE          |
 | EEEeEEEEEEeEEEEeeEEEEEEEEEEEEEEEEE     E G EE           eE          |
 | EEEEEEEEEEEEEEEEEEEEEEsesssseessEEEEEEEE   EE           EE          |
-| EEEEEEEEEEeEEEEEEEEEEE   e                              EE          |
-| EEEEEEEEEEEEEEEEEEEEEE          EEEEeEEEEEEEee     EEeEEE           |
+| EEEEEEEEEEeEEEEEEEEEEE   e     >                        EE          |
+| EEEEEEEEEEEEEEEEEEEEEE .        EEEEeEEEEEEEee     EEeEEE           |
 | EEEEEEEEEEEEEEEEEEEEEE          EE           e     e                |
 | EEEEEe  # ## #  EeEEEe          EE           e     E                |
-| EEEeE #eeeeeeee #               EE           E     E                |
+| EEEeE #eeeeeeee #      <        EE           E     E                |
 | EEEe # EEEEEEEEEEEEEEE          EE           E     e                |
 | eeeeGEEEEEEEEEEEEEEEEe          EE           | GGG |                |
 | eEEeeEeEEEEEEEEEeEEEEe    P     EE           _______                |
 | EEEEEEEEEEEEEEEEEEEEE           Ee                                  |
+_______________________________________________________________________
+#level
+0:30
+|_____________________________________________________________________|
+|               EEEEeEEeEEEEEEeeEEEEEEEEEEEeEEEeEEEEEeEEEEEE          |
+|               EEEE                                      EE          |
+|               EEEe  e                             e     EE          |
+|               EeEE  S            e            M         EE          |
+|               EEEe e                                    eE          |
+|               EEEE      e      G            E|||||||||||eE          |
+| EEEEEEEEEEEEEEEEEeEEEEeEEE   EEEEEeEEEEEEEEEE___________eE          |
+| EEEEEEEEEEeEEEEEEEEEEEEEEE   EEE    G       E           EE          |
+| EEEEEEEEEEEEEEEEEEEEEEEEEE   EEEEE       EEEE     M     eE          |
+| EEEeEEEEEEeEEEEeeEEEEEEEEE   EEEEE  M      EE           eEeEEEEEEEe |
+| EEEEEEEEEEEEEEEEEEEEEEsess   essEEEEEEEE   EE                       |
+| EEEEEEEEEEeEEEEEEEEEEE   e                                          |
+| EEEEEEEEEEEEEEEEEEEEEE          EEEEeEEEEEEEee     EEeEEE|||||      |
+| EEEEEEEEEEEEEEEEEEEEEE          EE     G     e     e         |      |
+| EEEEEe  # ## #  EeEEEe          EE           e     E         |      |
+| EEEeE #eeeeeeee #               EE           E     E         |      |
+| EEEe # EEEEEEEEEEEEEEE          EE           E     e         |      |
+| eeeeGEEEEEEEEEEEEEEEEe____________           | GGG |         |      |
+| eEEeeEeEEEEEEEEEeEEEEe    P                  _________________      |
+| EEEEEEEEEEEEEEEEEEEEE                                               |
 _______________________________________________________________________
