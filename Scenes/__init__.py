@@ -1,3 +1,6 @@
+from copy import deepcopy, copy
+
+
 class Scene:
     def __init__(self, scene_loader):
         self.scene_loader = scene_loader
@@ -10,6 +13,7 @@ class Scene:
 
     def on_switch(self):
         pass
+
 
 class SceneLoader:
     def __init__(self, screen):
@@ -27,4 +31,5 @@ class SceneLoader:
         self.get_current().on_switch()
 
     def get_current(self):
-        return self.scenes[self.current_scene]
+        d = self.scenes[self.current_scene]
+        return d

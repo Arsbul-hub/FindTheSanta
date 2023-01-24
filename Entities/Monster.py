@@ -24,6 +24,9 @@ class Monster(Entity):
         self.size = self.HITBOX_SIZE
         self.set_surf("textures/monster.png", self.HITBOX_SIZE, True)
 
+    # def on_spawned(self):
+    #
+    #     self.set_position(level.player_spawn[0] * ITEM_SIZE[0], level.player_spawn[1] * ITEM_SIZE[1])
     def on_update(self, event, tick):
 
         self.speed_in_tick = ITEM_SIZE[0] * MONSTERS_SPEED * tick / 1000

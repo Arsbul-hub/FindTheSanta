@@ -13,7 +13,7 @@ class Player(Entity):
 
     def __init__(self, screen, level):
         super().__init__(screen, level)
-
+        self.start_level = level
         self.show_collider = False
         self.set_position(level.player_spawn[0] * ITEM_SIZE[0], level.player_spawn[1] * ITEM_SIZE[1])
         self.direction = self.STOP
@@ -32,6 +32,10 @@ class Player(Entity):
 
     def on_spawned(self):
         self.loose_time = datetime.now() + self.level.loose_time
+        self.set_position(self.level.player_spawn[0] * ITEM_SIZE[0], self.level.player_spawn[1] * ITEM_SIZE[1])
+        self.speed_boost = 10
+        self.gifts = 0
+        self.level = self.start_level
 
     def on_pygame_event(self, event):
         if event.type == pygame.KEYDOWN:

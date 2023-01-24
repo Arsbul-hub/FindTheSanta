@@ -19,7 +19,7 @@ class Entity:
         self.level = level
 
         self.draw_x, self.draw_y = 0, 0
-
+        self.spawn_position = None
         self.speed_in_tick = 0
         self.screen = screen
         self.sprite_animations = []
@@ -72,6 +72,8 @@ class Entity:
 
     def set_position(self, x, y):
         self.x, self.y = x, y
+        if not self.spawn_position:
+            self.spawn_position = x, y
 
     def stop(self):
         self.FORWARD = 0
@@ -179,7 +181,7 @@ class Entity:
             pass
 
     def on_spawned(self):
-        pass
+        self.x, self.y = self.spawn_position
 
     def on_killed(self):
         pass

@@ -17,6 +17,16 @@ class Level:
     def __getitem__(self, index):
         return self.level_map[index]
 
+    def copy(self):
+        new_level = Level()
+        new_level.level_map = self.level_map
+        new_level.entities = self.entities
+        new_level.santa_spawn = self.santa_spawn
+        new_level.gifts = self.gifts
+        new_level.player_spawn = self.player_spawn
+        new_level.player_spawn = self.loose_time
+        return new_level
+
 
 def get_player_cords(level):
     for i in range(len(level)):
