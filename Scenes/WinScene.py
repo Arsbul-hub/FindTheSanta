@@ -19,7 +19,7 @@ class WinScene(Scene):
                                               SCREEN_SIZE[1] // 2 - text1.get_size()[1] / 2 - 120))
         text1 = MAIN_FONT.render(f'Вы помогли Санте собрать подарки', True, (100, 100, 100))
         self.scene_loader.screen.blit(text1, (SCREEN_SIZE[0] // 2 - text1.get_size()[0] / 2,
-                                              SCREEN_SIZE[1] // 2 - text1.get_size()[1] / 2 - 100))
+                                              SCREEN_SIZE[1] // 2 - text1.get_size()[1] / 2 - 70))
 
     def on_pygame_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
