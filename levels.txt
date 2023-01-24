@@ -1,5 +1,5 @@
 #level
-0:5
+3:0
 |_____________________________________________________________________|
 |                                                                     |
 |                                         |||||||||||||               |
@@ -12,11 +12,11 @@
 | EEEEEEEEEEEEEEEEEEEEEE                  #           |_____|         |
 | EEEeEEEEEEeEEEEeeEEEEE                   #          |  G  |         |
 | EEEEEEEEEEEEEEEEEEEEEE                  # ### # # #       |         |
-| EEEEEEEEEEeEEEEEEEEEEE                  #           |  G  |         |
+| EEEEEEEEEEeEEEEEEEEEEE                  #  >        |  G  |         |
 | EEEEEEEEEEEEEEEEEEEEEE                              |_____|         |
 | EEEEEEEEEEEEEEEEEEEEEE                  #                           |
-| EEEEEe  # ## #  EeEEEe                  #                           |
-| EEEeE #eeeeeeee #      t      <         #                           |
+| EEEEEe  # ## #  EeEEEe                * #                           |
+| EEEeE #eeeeeeee #      t      <  C  >   #                           |
 | EEEe # EEEEEEEE # ######       P### # ##                            |
 | eeeeGEEEEEEEEEEEEEEEEe                                              |
 | eEEeeEeEEEEEEEEEeEEEEe                                              |
@@ -27,16 +27,16 @@ _______________________________________________________________________
 |_____________________________________________________________________|
 |               EEEEeEEeEEEEEEeeEEEEEEEEEEEeEEEeEEEEEeEEEEEE          |
 |               EEEE                                      EE          |
-|               EEEe  e                             e     EE          |
+|               EEEe  e       G                     e     EE          |
 |               EeEE  S            e            M         EE          |
 |               EEEe e                                    eE          |
-|               EEEE      e      G            E           eE          |
+|               EEEE      e                   E           eE          |
 | EEEEEEEEEEEEEEEEEeEEEEeEEEEeEEEEEEeEEEEEEEEEE           eE          |
 | EEEEEEEEEEeEEEEEEEEEEEEEEEEEEEEE            E           EE          |
 | EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE     EeEEEE           eE          |
 | EEEeEEEEEEeEEEEeeEEEEEEEEEEEEEEEEE     E G EE           eE          |
 | EEEEEEEEEEEEEEEEEEEEEEsesssseessEEEEEEEE   EE           EE          |
-| EEEEEEEEEEeEEEEEEEEEEE   e     >                        EE          |
+| EEEEEEEEEEeEEEEEEEEEEE   e     >                .       EE          |
 | EEEEEEEEEEEEEEEEEEEEEE .        EEEEeEEEEEEEee     EEeEEE           |
 | EEEEEEEEEEEEEEEEEEEEEE          EE           e     e                |
 | EEEEEe  # ## #  EeEEEe          EE           e     E                |
@@ -47,26 +47,26 @@ _______________________________________________________________________
 | EEEEEEEEEEEEEEEEEEEEE           Ee                                  |
 _______________________________________________________________________
 #level
-0:30
+3:0
 |_____________________________________________________________________|
 |               EEEEeEEeEEEEEEeeEEEEEEEEEEEeEEEeEEEEEeEEEEEE          |
 |               EEEE                                      EE          |
-|               EEEe  e                             e     EE          |
+|               EEEe  e        G                    e     EE          |
 |               EeEE  S            e            M         EE          |
 |               EEEe e                                    eE          |
-|               EEEE      e      G            E|||||||||||eE          |
+|               EEEE      e                   E|||||||||||eE          |
 | EEEEEEEEEEEEEEEEEeEEEEeEEE   EEEEEeEEEEEEEEEE___________eE          |
 | EEEEEEEEEEeEEEEEEEEEEEEEEE   EEE    G       E           EE          |
-| EEEEEEEEEEEEEEEEEEEEEEEEEE   EEEEE       EEEE     M     eE          |
+| EEEEEEEEEEEEEEEEEEEEEEEEEE   EEEEE     C EEEE     M     eE          |
 | EEEeEEEEEEeEEEEeeEEEEEEEEE   EEEEE  M      EE           eEeEEEEEEEe |
 | EEEEEEEEEEEEEEEEEEEEEEsess   essEEEEEEEE   EE                       |
-| EEEEEEEEEEeEEEEEEEEEEE   e                                          |
-| EEEEEEEEEEEEEEEEEEEEEE          EEEEeEEEEEEEee     EEeEEE|||||      |
+| EEEEEEEEEEeEEEEEEEEEEE   e                     <                    |
+| EEEEEEEEEEEEEEEEEEEEEE      .   EEEEeEEEEEEEee     EEeEEE|||||      |
 | EEEEEEEEEEEEEEEEEEEEEE          EE     G     e     e         |      |
 | EEEEEe  # ## #  EeEEEe          EE           e     E         |      |
-| EEEeE #eeeeeeee #               EE           E     E         |      |
+| EEEeE #eeeeeeee #        <      EE           E     E         |      |
 | EEEe # EEEEEEEEEEEEEEE          EE           E     e         |      |
 | eeeeGEEEEEEEEEEEEEEEEe____________           | GGG |         |      |
-| eEEeeEeEEEEEEEEEeEEEEe    P                  _________________      |
-| EEEEEEEEEEEEEEEEEEEEE                                               |
+| eEEeeEeEEEEEEEEEeEEEEe    P   >       *      _________________      |
+| EEEEEEEEEEEEEEEEEEEEE                   >                           |
 _______________________________________________________________________
