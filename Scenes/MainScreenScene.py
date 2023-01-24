@@ -28,7 +28,7 @@ class MainScreenScene(Scene):
         self.scene_loader.screen.blit(text1, (SCREEN_SIZE[0] // 2 - text1.get_size()[0] / 2,
                                               SCREEN_SIZE[1] // 2 - text1.get_size()[1] / 2 - 100))
 
-        text1 = MAIN_FONT.render('Соберите подарки и принесите их Деду Морозу!', True, (100, 100, 100))
+        text1 = MAIN_FONT.render('Соберите подарки и принесите их Санте!', True, (100, 100, 100))
         self.scene_loader.screen.blit(text1, (SCREEN_SIZE[0] // 2 - text1.get_size()[0] / 2,
                                               SCREEN_SIZE[1] // 2 - text1.get_size()[1] / 2 - 60))
         text1 = MAIN_FONT.render('Остерегайся монстров, используй левый shift для того, чтобы убежать.', True,
