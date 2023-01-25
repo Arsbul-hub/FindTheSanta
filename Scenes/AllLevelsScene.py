@@ -1,7 +1,7 @@
 import pygame
 import random
 from Scenes import Scene
-from Widgets.Buttton import Button
+from Widgets.Button import Button
 from config import SCREEN_SIZE, MAIN_FONT
 
 

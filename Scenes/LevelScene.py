@@ -3,7 +3,7 @@ import pygame.draw
 from Entities.Player import Player
 from Widgets.StaticImage import StaticImage
 from Scenes import Scene
-from Widgets.Buttton import Button
+from Widgets.Button import Button
 from config import ITEM_SIZE, DISPLAYING_DISTANCE, SCREEN_SIZE, MAIN_FONT, CLOCK, CODES
 
 
