@@ -1,5 +1,5 @@
 from Scenes import Scene
-from Widgets import Button
+from Widgets.Buttton import Button
 from config import MAIN_FONT, SCREEN_SIZE
 import pygame
 
@@ -7,7 +7,8 @@ import pygame
 class GameOverScene(Scene):
     def __init__(self, scene_loader):
         super().__init__(scene_loader)
-        self.button = Button(self.scene_loader.screen, (SCREEN_SIZE[0] / 2 - 105, SCREEN_SIZE[1] / 2), (100, 100), "На главную")
+        self.button = Button(self.scene_loader.screen, (SCREEN_SIZE[0] / 2 - 105, SCREEN_SIZE[1] / 2), (100, 100),
+                             "На главную")
 
     def update_event(self, event):
         self.scene_loader.screen.fill((120, 219, 226))
@@ -20,5 +21,3 @@ class GameOverScene(Scene):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button.is_clicked(event.pos):
                 self.scene_loader.switch_scene('all_levels_scene')
-
-

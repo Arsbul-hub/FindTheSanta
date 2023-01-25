@@ -1,7 +1,7 @@
 import pygame
 
-from ImageLoader import Animation, StaticImage
-
+from Widgets.Animation import Animation
+from Widgets.StaticImage import StaticImage
 pygame.font.init()
 CLOCK = pygame.time.Clock()
 

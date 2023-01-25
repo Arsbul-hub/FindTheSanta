@@ -1,7 +1,7 @@
 from Entities.Person import Main_Screen_Person
-from ImageLoader import StaticImage
+from Widgets.StaticImage import StaticImage
 from Scenes import Scene
-from config import ITEM_SIZE, DISPLAYING_DISTANCE, SCREEN_SIZE, MAIN_FONT, CLOCK, TEXTURES
+from config import SCREEN_SIZE, MAIN_FONT, CLOCK
 import pygame, random
 
 

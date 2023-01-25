@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pygame
 
-from ImageLoader import StaticImage
+from Widgets.StaticImage import StaticImage
 from config import ITEM_SIZE, FULL_BLOCKS
 
 

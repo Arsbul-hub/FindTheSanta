@@ -1,5 +1,5 @@
 from Scenes import Scene
-from Widgets import Button
+from Widgets.Buttton import Button
 from config import SCREEN_SIZE, MAIN_FONT
 import pygame
 

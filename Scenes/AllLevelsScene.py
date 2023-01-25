@@ -1,15 +1,16 @@
 import pygame
 import random
 from Scenes import Scene
-from Widgets import Button
+from Widgets.Buttton import Button
 from config import SCREEN_SIZE, MAIN_FONT
 
-with open("levels.txt", "r") as f:
-    n = len(f.read().split("#level\n")[1:])
+
+# with open("levels.txt", "r") as f:
+#     n = len(f.read().split("#level\n")[1:])
 
 
 class AllLevelsScene(Scene):
-    def __init__(self, scene_loader):
+    def __init__(self, scene_loader, levels):
         super().__init__(scene_loader)
         self.snows = []
         for i in range(350):
@@ -17,8 +18,8 @@ class AllLevelsScene(Scene):
             y = random.randrange(0, 900)
             self.snows.append([x, y])
         self.buttons = []
-        for i in range(n):
-            b = Button(self.scene_loader.screen, (50, i * 70 + 200),  (160, 60), f"Уровень: {i + 1}")
+        for i in range(len(levels)):
+            b = Button(self.scene_loader.screen, (50, i * 70 + 200), (160, 60), f"Уровень: {i + 1}")
             b.level = i
             self.buttons.append(b)
 

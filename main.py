@@ -1,5 +1,4 @@
 import sys
-from pprint import pprint
 
 from pygame import *
 
@@ -10,7 +9,7 @@ from Scenes.MainScreenScene import MainScreenScene
 from Scenes.AllLevelsScene import AllLevelsScene
 from Scenes.GameOverScene import GameOverScene
 from config import SCREEN_SIZE
-from LevelLoader import LevelLoader
+from Level.LevelLoader import LevelLoader
 import pygame
 
 
@@ -29,7 +28,7 @@ if __name__ == "__main__":
     scene_loader.add(WinScene(scene_loader), "win_scene")
     scene_loader.add(GameOverScene(scene_loader), "game_over_scene")
     scene_loader.add(MainScreenScene(scene_loader), "main_screen_scene")
-    scene_loader.add(AllLevelsScene(scene_loader), "all_levels_scene")
+    scene_loader.add(AllLevelsScene(scene_loader, levels.get_levels()), "all_levels_scene")
     scene_loader.current_scene = "main_screen_scene"
     while True:
 

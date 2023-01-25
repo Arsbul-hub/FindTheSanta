@@ -1,14 +1,10 @@
-import time
-from copy import deepcopy, copy
-from datetime import datetime, time, timedelta
-
 import pygame.draw
 
 from Entities.Player import Player
-from ImageLoader import StaticImage
+from Widgets.StaticImage import StaticImage
 from Scenes import Scene
-from Widgets import Button
-from config import ITEM_SIZE, DISPLAYING_DISTANCE, SCREEN_SIZE, MAIN_FONT, CLOCK, TEXTURES, CODES
+from Widgets.Buttton import Button
+from config import ITEM_SIZE, DISPLAYING_DISTANCE, SCREEN_SIZE, MAIN_FONT, CLOCK, CODES
 
 
 class LevelsScene(Scene):
